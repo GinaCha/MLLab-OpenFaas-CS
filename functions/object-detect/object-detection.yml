@@ -1,0 +1,22 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  object-detection:
+    lang: python3-debian
+    handler: ./object-detection
+    image: ginadock/object-detection:1.0.1
+    requests:
+      cpu: 10m
+      memory: 10Mi
+    limits:
+      cpu: 200m
+      memory: 100Mi
+    environment:
+      read_timeout: "5s"
+      write_timeout: "7s"
+      exec_timeout: "12s"
+    labels:
+      com.openfaas.scale.max: 20
+

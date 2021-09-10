@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: grafana
+  name: grafana
+  namespace: openfaas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - image: stefanprodan/faas-grafana:4.6.3
+        imagePullPolicy: IfNotPresent
+        name: faas-grafana
+        ports:
+        - containerPort: 3000
+        resources: 
+          limits:
+            cpu: 500m
+            memory: 1Gi

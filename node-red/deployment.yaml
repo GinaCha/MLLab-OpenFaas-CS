@@ -1,0 +1,43 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-red
+  namespace: node-red
+spec:
+  selector:
+    matchLabels:
+      app: node-red
+  template:
+    metadata:
+      labels:
+        app: node-red
+    spec:
+      containers:
+        - name: node-red
+          image: ginadock/mllab-node-red:0.1.0
+          # image: nodered/node-red:latest-12
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "300m"
+            requests:
+              memory: "100Mi"
+              cpu: "50m"
+          ports:
+            - containerPort: 1880
+              name: node-red
+              protocol: TCP
+          volumeMounts:
+            - mountPath: "/data"
+              name: "node-red-volume"
+          envFrom:
+            - configMapRef:
+                name: node-red-cm
+      restartPolicy: Always
+      volumes:
+        - name: "node-red-volume"
+          persistentVolumeClaim:
+            claimName: "node-red"
+            readOnly: false

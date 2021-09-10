@@ -1,0 +1,7 @@
+functionNamespace: openfaas-fn
+generateBasicAuth: false
+
+openfaasImagePullPolicy: "IfNotPresent"
+
+faasnetes:
+  imagePullPolicy: "Always"    # Image pull policy for deployed functions

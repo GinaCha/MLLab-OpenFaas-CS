@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: minio-keys
+  namespace: minio
+type: Opaque
+
+stringData:
+  # Must be at least 3 characters
+  access-key: admin
+  # Must be at least 8 characters
+  secret-key: 1qa2ws!@

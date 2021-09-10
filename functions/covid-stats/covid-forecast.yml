@@ -1,0 +1,10 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://localhost:8080
+functions:
+  covid-forecast:
+    lang: rstats-base-plumber
+    handler: ./covid-forecast
+    image: ginadock/covid-forecast:latest
+

@@ -1,0 +1,29 @@
+existingSecret: "minio-keys" # Credentials secret
+
+forceNewKeys: true # Force admin credentials (access and secret key) to be reconfigured every time they change in the secrets
+
+defaultBuckets: "general,processed,incoming" # space, semicolon, or comma separated list of buckets to be created at startup
+
+containerPort: 9000 # container port to open
+
+resources:
+  limits:
+    cpu: 400m
+    memory: 250Mi
+
+service:
+  type: NodePort
+  port: 9000
+  nodePort: "30900" # Node port to be exposed
+
+persistence:
+  enabled: true
+  accessModes:
+    - ReadWriteOnce
+  size: 4Gi # Size of the persistent volume claim for the minIO buckets
+
+serviceAccount:
+  create: false
+
+##  Extra environment variables to be set on MinIO container
+extraEnv: {} 

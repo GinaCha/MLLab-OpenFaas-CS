@@ -1,0 +1,18 @@
+# A simple pod definition used for debugging networking within the k8s cluster.
+# create the pod using
+# kubectl apply -f debug.yaml --namespace NAMESPACE
+
+# run the command below for an interactive TTY. Container is based on Apline Linux.
+# kubectl exec debug -it -n NAMESPACE /bin/bash
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug
+  label: net-debug
+spec:
+  containers:
+  - name: debug-cont
+    image: nicolaka/netshoot
+    imagePullPolicy: Always
+    command: [ "sleep", "60000" ]
+

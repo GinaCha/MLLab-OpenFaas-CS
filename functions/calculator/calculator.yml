@@ -1,0 +1,34 @@
+provider:
+  name: openfaas
+  gateway: http://localhost:8080
+
+functions:
+  calculator-about:
+    lang: python
+    handler: ./about
+    image: ginadock/calculator-about
+
+  calculator-add:
+    lang: python
+    handler: ./add
+    image: ginadock/calculator-add
+
+  calculator-subtract:
+    lang: python
+    handler: ./subtract
+    image: ginadock/calculator-subtract
+
+  calculator-multiply:
+    lang: python
+    handler: ./multiply
+    image: ginadock/calculator-multiply
+
+  calculator-divide:
+    lang: python
+    handler: ./divide
+    image: ginadock/calculator-divide
+
+  calculator-fibonacci:
+    lang: python
+    handler: ./fibonacci
+    image: ginadock/calculator-fibonacci
